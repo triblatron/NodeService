@@ -13,6 +13,7 @@ enum Result
     RESULT_OUT_OF_RANGE=7;
     // A value was not in the set of allowed values.
     RESULT_NOT_ALLOWED=8;
+    RESULT_DUPLICATE_NAME=9;
 }
 
 message TemplateID
@@ -49,7 +50,7 @@ message DeacribeNodeRequest
 
 enum Direction
 {
-    DIR_UNKNOWN = 0;
+    DIR_INTERNAL = 0;
     DIR_IN = 1;
     DIR_OUT = 2;
 }
@@ -223,6 +224,28 @@ message DeleteSignalPathResponse
     Result result = 1;
 }
 
+message AddTemplateRequest
+{
+    NodeID nodeID = 1;
+    string name = 2;
+}
+
+message AddTemplateResponse
+{
+    Result result = 1;
+    TemplateID templateID = 2;
+}
+
+message DeleteTemplateRequest
+{
+    TemplateID templateID = 1;
+}
+
+message DeleteTemplateResponse
+{
+    Result result = 1;
+}
+
 service NodeEditor
 {
     rpc createNode(CreateNodeRequest) returns (CreateNodeResponse);
@@ -233,4 +256,6 @@ service NodeEditor
     rpc removePort(RemovePortRequest) returns (RemovePortResponse);
     rpc createSignalPath(CreateSignalPathRequest) returns (CreateSignalPathResponse);
     rpc deleteSignalPath(DeleteSignalPathRequest) returns (DeleteSignalPathResponse);
+    rpc addTemplate(AddTemplateRequest) returns (AddTemplateResponse);
+    rpc deleteTemplate(DeleteTemplateRequest) returns (DeleteTemplateResponse);
 }
