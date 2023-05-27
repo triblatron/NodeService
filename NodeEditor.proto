@@ -14,6 +14,7 @@ enum Result
     // A value was not in the set of allowed values.
     RESULT_NOT_ALLOWED=8;
     RESULT_DUPLICATE_NAME=9;
+    RESULT_FILE_NOT_FOUND=10;
 }
 
 message TemplateID
@@ -246,6 +247,37 @@ message DeleteTemplateResponse
     Result result = 1;
 }
 
+message LoadTemplatePaletteRequest
+{
+    string filename = 1;
+}
+
+message LoadTemplatePaletteResponse
+{
+    Result result = 1;
+}
+
+message SetPortValueRequest
+{
+    PortID portID = 1;
+    Value value = 2;    
+}
+
+message SetPortValueResponse
+{
+    Result result = 1;
+}
+
+message OpenTemplateRequest
+{
+    TemplateID templateID = 1;
+}
+
+message OpenTemplateResponse
+{
+    Result result = 1;
+}
+
 service NodeEditor
 {
     rpc createNode(CreateNodeRequest) returns (CreateNodeResponse);
@@ -258,4 +290,7 @@ service NodeEditor
     rpc deleteSignalPath(DeleteSignalPathRequest) returns (DeleteSignalPathResponse);
     rpc addTemplate(AddTemplateRequest) returns (AddTemplateResponse);
     rpc deleteTemplate(DeleteTemplateRequest) returns (DeleteTemplateResponse);
+    rpc loadTemplatePalette(LoadTemplatePaletteRequest) returns (LoadTemplatePaletteResponse);
+    rpc setPortValue(SetPortValueRequest) returns (SetPortValueResponse);
+    rpc openTemplate(OpenTemplateRequest) returns (OpenTemplateResponse);
 }
