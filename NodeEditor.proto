@@ -106,20 +106,11 @@ message Port
     Validation Validation = 6;
 }
 
-message Setting
-{
-    PortID id = 1;
-    string name = 2;
-    DataType type = 3;
-    Value value = 4;
-    Validation validation = 5;
-}
-
 message DescribeNodeResponse
 {
     repeated Port inputs = 1;
     repeated Port outputs = 2;
-    repeated Setting settings = 3;
+    repeated Port settings = 3;
 }
 
 message ValidationRequest
@@ -274,6 +265,16 @@ message OpenTemplateRequest
 }
 
 message OpenTemplateResponse
+{
+    Result result = 1;
+}
+
+message SaveTemplateRequest
+{
+    TemplateID templateID = 1;
+}
+
+message SaveTemplateResponse
 {
     Result result = 1;
 }
