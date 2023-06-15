@@ -51,9 +51,8 @@ message DeacribeNodeRequest
 
 enum Direction
 {
-    DIR_INTERNAL = 0;
-    DIR_IN = 1;
-    DIR_OUT = 2;
+    DIR_IN = 0;
+    DIR_OUT = 1;
 }
 
 enum DataType
@@ -96,6 +95,13 @@ message Validation
     }
 }
 
+enum Visibility
+{
+    VISIBILITY_PUBLIC = 0;
+    VISIBILITY_PROTECTED = 1;
+    VISIBILITY_INTERNAL = 2;
+}
+
 message Port
 {
     PortID id = 1;
@@ -104,6 +110,7 @@ message Port
     Direction dir = 4;
     Value value = 5;
     Validation Validation = 6;
+    Visibility visibility = 7;
 }
 
 message DescribeNodeResponse
