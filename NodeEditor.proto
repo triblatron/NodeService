@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package nodeeditor;
+
 enum Result
 {
     RESULT_OK=0;
